@@ -8,7 +8,6 @@ from easygui import buttonbox, enterbox
 import os
 import re
 
-# Lista de palabras en inglés y español para el reconocimiento
 isl_gif = [
     'any questions', 'are you angry', 'are you busy', 'are you hungry', 'are you sick', 'be careful',
     'can we meet tomorrow', 'did you book tickets', 'did you finish homework', 'do you go to office', 'do you have money',
@@ -37,7 +36,6 @@ isl_gif = [
 ]
 
 def clean_phrase(phrase):
-    # Eliminar caracteres especiales y convertir a minúsculas
     cleaned_phrase = re.sub(r'\W+', '', phrase.lower())
     return cleaned_phrase
 
@@ -46,7 +44,6 @@ def show_sign_language(text):
     file_path = f'ISL_Gifs/{cleaned_phrase}.gif'
     
     if os.path.exists(file_path):
-        # Mostrar imagen GIF
         class ImageLabel(tk.Label):
             """Una etiqueta que muestra imágenes y reproduce GIFs"""
             def load(self, im):
@@ -86,7 +83,6 @@ def show_sign_language(text):
         root.mainloop()
     else:
         print(f"El archivo {file_path} no se encontró.")
-        # Mostrar imagen de la letra correspondiente
         for char in cleaned_phrase:
             if char in 'abcdefghijklmnopqrstuvwxyz':
                 ImageAddress = f'letters/{char}.jpg'
@@ -114,7 +110,6 @@ def func():
         except sr.RequestError as e:
             print(f"No se pudo solicitar resultados; {e}")
 
-# Menú de opciones
 while True:
     image = "signlang.png"
     msg = "ESCUCHAR Y VER LENGUAJE DE SEÑAS"
